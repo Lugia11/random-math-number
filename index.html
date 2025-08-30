@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pyodide example</title>
+        
+<var name="problemssolved" value="0">
+
+</var>
+    <style>
+      /* default styling for the output - fixed to 36px and not changeable */
+      #out {
+        font-size: 36px; /* fixed fontsize */
+        font-family: Arial, sans-serif;
+        color: #003366;
+        background: #f8f9fb;
+        padding: 8px;
+        border-radius: 4px;
+        text-align: center;
+        white-space: pre-wrap;
+      }
+      /* center the run button */
+      #runBtn {
+        display: block;
+        margin: 128px auto;
+        padding: 12px 24px;
+        font-size: 24px;
+        font-weight: bold;
+        background-color: #848688;
+      }
+      label { font-size: 14px; margin-right: 8px; }
+    </style>
+  </head>
+  <body>
+    <button id="runBtn" >Click for random math problem</button>
+    <pre id="out"></pre>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <script>
+      async function main() {
+        const pyodide = await loadPyodide();
+        const pyCode = `
+import random
+def generate_problem():
+    n1 = random.randint(1, 75)
+    n2 = random.randint(1, 25)
+    method = random.randint(1, 4)
+    if method == 1:
+        return f"{n1} + {n2} = {n1 + n2}"
+    if method == 2:
+        return f"{n1} - {n2} = {n1 - n2}"
+    if method == 3:
+        return f"{n1} * {n2} = {n1 * n2}"
+    if method == 4:
+        return f"{n1} / {n2} = {n1 / n2}"
+        
+`;
+        await pyodide.runPythonAsync(pyCode);
+
+        const outEl = document.getElementById('out');
+
+        document.getElementById('runBtn').addEventListener('click', async () => {
+          const out = pyodide.runPython('generate_problem()');
+          outEl.textContent = out;
+    
+        
+        });
+      }
+      
+      main();
+    
+    </script>
+ </body>
+</html>
