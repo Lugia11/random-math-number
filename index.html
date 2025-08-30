@@ -42,8 +42,8 @@
         const pyCode = `
 import random
 def generate_problem():
-    n1 = random.randint(1, 75)
-    n2 = random.randint(1, 25)
+    n1 = random.randint(1, 1000)
+    n2 = random.randint(1, 500)
     method = random.randint(1, 4)
     if method == 1:
         return f"{n1} + {n2} = {n1 + n2}"
@@ -71,4 +71,5 @@ def generate_problem():
     
     </script>
  </body>
+
 </html>
