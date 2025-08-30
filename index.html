@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Pyodide example</title>
-    <image src="images.jpg">  
+    <image src="images.jpg" height="512" width="256">  
 <var name="problemssolved" value="0">
 
 </var>
@@ -31,7 +31,7 @@
       label { font-size: 14px; margin-right: 8px; }
     </style>
   </head>
-  <body style="background: url(sigma.jpg)">
+  <body style="background: url(sigma.jpg)" width="2560px" height="1440px">
     <button id="runBtn" >Click for random math problem</button>
     <pre id="out"></pre>
 
@@ -73,6 +73,7 @@ def generate_problem():
  </body>
 
 </html>
+
 
 
 
